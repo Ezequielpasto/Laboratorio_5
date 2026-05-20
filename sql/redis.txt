@@ -1,0 +1,22 @@
+SET usuario "Juan"
+
+GET usuario
+
+SET visitas 0
+
+INCR visitas
+
+SET sesion "activa"
+EXPIRE sesion 60
+
+TTL sesion
+
+LPUSH tareas "backup"
+LPUSH tareas "deploy"
+
+LRANGE tareas 0 -1
+
+HSET usuario:1 nombre "Juan"
+HSET usuario:1 edad 25
+
+HGETALL usuario:1
