@@ -1,0 +1,53 @@
+[Ver contenedores Docker activos]
+docker ps
+
+[Ver logs MySQL]
+docker logs mysql-lab
+
+[Ver logs PostgreSQL]
+docker logs postgres-lab
+
+[Crear contenedor MySQL]
+docker run -d --name mysql-lab -e MYSQL_ROOT_PASSWORD=admin123 -p 3306:3306 mysql:8 
+
+[Crear contenedor PostgreSQL]
+docker run -d --name postgres-lab -e POSTGRES_PASSWORD=admin123 -p 5432:5432 postgres:16
+
+[Crear contenedor MongoDB]
+docker run -d --name mongodb-lab -p 27017:27017 mongo:7 
+
+[Crear contenedor Redis]
+docker run -d --name redis-lab -p 6379:6379 redis:7
+
+[Acceder a MySQL]
+docker exec -it mysql-lab mysql -u root -p
+
+[Acceder a PostgreSQL]
+docker exec -it postgres-lab psql -U postgres
+
+[Acceder a MongoDB]
+docker exec -it mongodb-lab mongosh
+
+[Acceder a Redis]
+docker exec -it redis-lab redis-cli
+
+[Realizar backup MySQL]
+docker exec mysql-lab /usr/bin/mysqldump -u root -padmin123 ejemplo > backups/backup-mysql.sql
+
+[Realizar backup PostgreSQL]
+docker exec postgres-lab pg_dump -U postgres ejemplo > backups/backup-postgres.sql
+
+[Realizar restore MySQL]
+docker exec -i mysql-lab mysql -u root -padmin123 ejemplo < backups/backup-mysql.sql 
+
+[Realizar restore PostgreSQL]
+docker exec -i postgres-lab psql -U postgres ejemplo < backups/backup-postgres.sql 
+
+[Monitorear recursos Docker]
+docker stats
+
+[Ver procesos MySQL]
+docker top mysql-lab
+
+[Ver procesos PostgreSQL]
+docker top postgres-lab
